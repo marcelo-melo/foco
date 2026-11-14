@@ -1,0 +1,4 @@
+build/
+Foco.app/
+*.iconset/
+.DS_Store
