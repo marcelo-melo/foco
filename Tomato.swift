@@ -1,9 +1,9 @@
 import CoreGraphics
 import Foundation
 
-/// Forma do tomate (coordenadas com y para baixo), usada no ícone, na janela e na barra de menus.
-enum Tomate {
-    static func corpo(in r: CGRect) -> CGPath {
+/// Tomato shape (y-down coordinates), shared by the app icon, the window and the menu bar icon.
+enum Tomato {
+    static func body(in r: CGRect) -> CGPath {
         func p(_ x: CGFloat, _ y: CGFloat) -> CGPoint { CGPoint(x: r.minX + x * r.width, y: r.minY + y * r.height) }
         let path = CGMutablePath()
         path.move(to: p(0.5, 0.17))
@@ -17,13 +17,13 @@ enum Tomate {
         return path
     }
 
-    static func folhas(in r: CGRect) -> CGPath {
+    static func leaves(in r: CGRect) -> CGPath {
         let c = CGPoint(x: r.midX, y: r.minY + 0.17 * r.height)
         let w = r.width
         let path = CGMutablePath()
         let specs: [(Double, CGFloat)] = [(200, 0.25), (155, 0.19), (340, 0.25), (25, 0.19), (95, 0.08)]
-        for (ang, len) in specs {
-            let a = ang * .pi / 180
+        for (angle, len) in specs {
+            let a = angle * .pi / 180
             let d = CGPoint(x: cos(a), y: sin(a))
             let tip = CGPoint(x: c.x + d.x * len * w, y: c.y + d.y * len * w)
             let mid = CGPoint(x: (c.x + tip.x) / 2, y: (c.y + tip.y) / 2)
@@ -36,7 +36,7 @@ enum Tomate {
         return path
     }
 
-    static func cabo(in r: CGRect) -> CGPath {
+    static func stem(in r: CGRect) -> CGPath {
         let w = 0.05 * r.width
         return CGPath(roundedRect: CGRect(x: r.midX - w / 2, y: r.minY, width: w, height: 0.18 * r.height),
                       cornerWidth: w / 2, cornerHeight: w / 2, transform: nil)
